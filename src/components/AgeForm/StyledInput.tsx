@@ -27,7 +27,7 @@ function StyledInput({
         <div className="mb-2 sm:mb-3">
           <p
             className={`text-xs text-userSmokeyGrey ${
-              meta.touched && meta.error && "!text-userLightRed"
+              (meta.touched && meta.error) || (isError && "!text-userLightRed")
             }`}
           >
             {label}
@@ -37,9 +37,8 @@ function StyledInput({
       <input
         onKeyUp={() => isError && setIsError && setIsError(false)}
         className={`w-full rounded-lg border border-userLightGrey p-4 text-xl hover:border-userPurple focus:outline-userPurple sm:px-6 sm:py-4 sm:text-3xl ${
-          meta.touched &&
-          meta.error &&
-          "!border-userLightRed !outline-userLightRed"
+          (meta.touched && meta.error) ||
+          (isError && "!border-userLightRed !outline-userLightRed")
         }`}
         {...field}
         {...props}
